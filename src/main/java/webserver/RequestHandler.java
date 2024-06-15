@@ -30,6 +30,13 @@ public class RequestHandler extends Thread {
             responseBody(dos, body);
         } catch (IOException e) {
             log.error(e.getMessage());
+        } finally {
+            try {
+                connection.close();
+                log.info("Connection closed.");
+            } catch (Exception e) {
+                log.error("Fail to close connection.");
+            }
         }
     }
 
